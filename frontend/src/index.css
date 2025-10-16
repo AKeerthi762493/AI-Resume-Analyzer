@@ -1,0 +1,196 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* AI Digital Learning Platform Design System */
+
+@layer base {
+  :root {
+    /* Core Brand Colors - AI Theme */
+    --background: 225 25% 97%;
+    --foreground: 225 25% 8%;
+
+    --card: 225 10% 98%;
+    --card-foreground: 225 25% 12%;
+
+    --popover: 225 10% 98%;
+    --popover-foreground: 225 25% 12%;
+
+    /* AI Primary - Deep Navy */
+    --primary: 225 35% 18%;
+    --primary-foreground: 225 15% 95%;
+    --primary-glow: 225 45% 35%;
+
+    /* AI Secondary - Muted Blue */
+    --secondary: 220 15% 92%;
+    --secondary-foreground: 225 25% 18%;
+
+    /* Muted Professional Tones */
+    --muted: 220 12% 94%;
+    --muted-foreground: 220 8% 55%;
+
+    /* AI Accent - Purple */
+    --accent: 265 20% 88%;
+    --accent-foreground: 265 35% 25%;
+    --accent-bright: 265 50% 65%;
+
+    /* System Colors */
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 225 15% 95%;
+    
+    --success: 145 60% 45%;
+    --success-foreground: 225 15% 95%;
+    
+    --warning: 35 85% 55%;
+    --warning-foreground: 225 15% 95%;
+
+    --border: 220 12% 88%;
+    --input: 220 12% 91%;
+    --ring: 225 35% 18%;
+
+    /* AI Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--accent-bright)), hsl(var(--accent)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-glow)) 50%, hsl(var(--accent-bright)) 100%);
+    
+    /* Sophisticated Shadows */
+    --shadow-elegant: 0 4px 20px -4px hsl(var(--primary) / 0.1);
+    --shadow-card: 0 2px 10px -2px hsl(var(--primary) / 0.08);
+    --shadow-glow: 0 0 30px hsl(var(--accent-bright) / 0.2);
+
+    /* Animation Variables */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    /* Dark Mode - AI Professional */
+    --background: 225 25% 6%;
+    --foreground: 225 15% 92%;
+
+    --card: 225 25% 8%;
+    --card-foreground: 225 15% 90%;
+
+    --popover: 225 25% 8%;
+    --popover-foreground: 225 15% 90%;
+
+    --primary: 225 15% 85%;
+    --primary-foreground: 225 25% 12%;
+    --primary-glow: 225 35% 70%;
+
+    --secondary: 225 15% 15%;
+    --secondary-foreground: 225 15% 85%;
+
+    --muted: 225 15% 12%;
+    --muted-foreground: 225 8% 65%;
+
+    --accent: 265 20% 20%;
+    --accent-foreground: 265 20% 85%;
+    --accent-bright: 265 40% 65%;
+
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 225 15% 95%;
+    
+    --success: 145 50% 50%;
+    --success-foreground: 225 15% 95%;
+    
+    --warning: 35 75% 60%;
+    --warning-foreground: 225 15% 95%;
+
+    --border: 225 15% 18%;
+    --input: 225 15% 15%;
+    --ring: 225 15% 85%;
+
+    /* Dark Mode Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--accent-bright)), hsl(var(--accent)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-glow)) 50%, hsl(var(--accent-bright)) 100%);
+    
+    --shadow-elegant: 0 4px 20px -4px hsl(0 0% 0% / 0.3);
+    --shadow-card: 0 2px 10px -2px hsl(0 0% 0% / 0.2);
+    --shadow-glow: 0 0 30px hsl(var(--accent-bright) / 0.3);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  /* AI Platform Components */
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+  
+  .gradient-accent {
+    background: var(--gradient-accent);
+  }
+  
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+  
+  .shadow-elegant {
+    box-shadow: var(--shadow-elegant);
+  }
+  
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+  
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  
+  .transition-bounce {
+    transition: var(--transition-bounce);
+  }
+
+  /* AI Score Indicators */
+  .score-high {
+    @apply bg-success/10 text-success border-success/20;
+  }
+  
+  .score-medium {
+    @apply bg-warning/10 text-warning border-warning/20;
+  }
+  
+  .score-low {
+    @apply bg-destructive/10 text-destructive border-destructive/20;
+  }
+
+  /* Animated Elements */
+  .floating {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px hsl(var(--accent-bright) / 0.2); }
+  50% { box-shadow: 0 0 40px hsl(var(--accent-bright) / 0.4); }
+}
