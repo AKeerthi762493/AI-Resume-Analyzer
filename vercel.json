@@ -3,13 +3,13 @@
   "builds": [
     {
       "src": "app/app.py",
-      "use": "@vercel/python"
+      "use": "@vercel/python",
+      "config": {
+        "excludeFiles": "{uploads/**,venv/**,__pycache__/**}"
+      }
     }
   ],
   "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "app/app.py"
-    }
+    { "src": "/(.*)", "dest": "app/app.py" }
   ]
 }
