@@ -1,0 +1,16 @@
+
+Job Title: Frontend Developer
+
+Must Have Skills:
+- React
+- JavaScript
+- HTML/CSS
+
+Good to Have:
+- TypeScript
+- Node.js
+
+Qualifications:
+- Bachelor's degree in Computer Science
+- 3+ years experience
+    
