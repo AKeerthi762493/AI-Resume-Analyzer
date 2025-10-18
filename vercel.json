@@ -1,15 +1,5 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "app/app.py",
-      "use": "@vercel/python",
-      "config": {
-        "excludeFiles": "{uploads/**,venv/**,__pycache__/**}"
-      }
-    }
-  ],
-  "routes": [
-    { "src": "/(.*)", "dest": "app/app.py" }
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/" }
   ]
 }
