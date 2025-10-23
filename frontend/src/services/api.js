@@ -1,7 +1,7 @@
 // src/services/api.js - DIAGNOSTIC VERSION
 // This version includes extensive logging to help debug the upload issue
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || "https://ai-resume-backend-os6v.onrender.com";
+const API_BASE_URL = import.meta.env.VITE_API_URL || "https://ai-resume-analyzer-1-km5i.onrender.com";
 
 console.log("🔗 API_BASE_URL:", API_BASE_URL);
 console.log("🔗 Environment:", import.meta.env.VITE_API_URL);
