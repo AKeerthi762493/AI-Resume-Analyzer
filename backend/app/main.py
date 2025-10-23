@@ -347,8 +347,13 @@ def analyze_data():
     
     try:
         data = request.get_json()
-        job_description_id = data.get('jobDescriptionId')
-        resume_ids = data.get('resumeIds', [])
+        
+        # Debug: Print what we received
+        print(f"Received data: {data}")
+        
+        # Accept multiple parameter name variations
+        job_description_id = data.get('jobDescriptionId') or data.get('jdId') or data.get('job_description_id')
+        resume_ids = data.get('resumeIds') or data.get('resumes') or data.get('resume_ids') or []
         
         if not job_description_id or not resume_ids:
             return jsonify({'success': False, 'error': 'Missing parameters'}), 400
