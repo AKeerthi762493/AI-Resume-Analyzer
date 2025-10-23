@@ -18,7 +18,7 @@ CORS(app, resources={
             "http://localhost:8080",
             "http://localhost:3000",
             "https://*.netlify.app",  # All Netlify preview deployments
-            "https://innomatics-resume-analyzer.netlify.app",  # ✅ Fixed: Removed trailing slash
+            "https://innomatics-resume-analyzer1.netlify.app",  # ✅ Fixed: Removed trailing slash
         ],
         "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
         "allow_headers": ["Content-Type", "Authorization", "Accept"],
