@@ -10,26 +10,20 @@ import re
 
 app = Flask(__name__)
 
-# ✅ CORS Configuration for Netlify - FIXED
-CORS(app, resources={
-    r"/api/*": {
-        "origins": [
-            "http://localhost:5173",
-            "http://localhost:8080",
-            "http://localhost:3000",
-            "https://*.netlify.app",  # All Netlify preview deployments
-            "https://innomatics-resume-analyzer1.netlify.app",  # ✅ Fixed: Removed trailing slash
-        ],
-        "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-        "allow_headers": ["Content-Type", "Authorization", "Accept"],
-        "supports_credentials": False,
-        "max_age": 3600
-    },
-    r"/": {
-        "origins": "*",
-        "methods": ["GET"]
-    }
-})
+# ✅ FIXED CORS Configuration
+CORS(app, 
+     origins=[
+         "http://localhost:5173",
+         "http://localhost:8080",
+         "http://localhost:3000",
+         "https://innomatics-resume-analyzer1.netlify.app",
+         # Add more specific Netlify URLs if needed
+     ],
+     methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+     allow_headers=["Content-Type", "Authorization", "Accept"],
+     supports_credentials=False,
+     max_age=3600
+)
 
 # Configuration
 UPLOAD_FOLDER = 'uploads'
@@ -220,8 +214,12 @@ def calculate_relevance_score(resume_text, jd_text):
     
     return score, relevance
 
-@app.route('/api/upload', methods=['POST'])
+@app.route('/api/upload', methods=['POST', 'OPTIONS'])
 def upload_files():
+    # Handle preflight
+    if request.method == 'OPTIONS':
+        return '', 204
+    
     try:
         if 'files' not in request.files:
             return jsonify({'success': False, 'error': 'No files provided'}), 400
@@ -342,8 +340,11 @@ def upload_files():
         print(f"Upload error: {str(e)}")
         return jsonify({'success': False, 'error': str(e)}), 500
 
-@app.route('/api/analyze', methods=['POST'])
+@app.route('/api/analyze', methods=['POST', 'OPTIONS'])
 def analyze_data():
+    if request.method == 'OPTIONS':
+        return '', 204
+    
     try:
         data = request.get_json()
         job_description_id = data.get('jobDescriptionId')
@@ -407,8 +408,11 @@ def analyze_data():
         print(f"Analysis error: {str(e)}")
         return jsonify({'success': False, 'error': str(e)}), 500
 
-@app.route('/api/analyses', methods=['GET'])
+@app.route('/api/analyses', methods=['GET', 'OPTIONS'])
 def get_all_analyses():
+    if request.method == 'OPTIONS':
+        return '', 204
+    
     try:
         all_results = []
         for resume_id, resume_data in data_store['resumes'].items():
@@ -418,8 +422,11 @@ def get_all_analyses():
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 500
 
-@app.route('/api/files', methods=['GET'])
+@app.route('/api/files', methods=['GET', 'OPTIONS'])
 def get_uploaded_files():
+    if request.method == 'OPTIONS':
+        return '', 204
+    
     try:
         file_type = request.args.get('type', 'all')
         files_list = []
@@ -448,8 +455,11 @@ def get_uploaded_files():
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 500
 
-@app.route('/api/health', methods=['GET'])
+@app.route('/api/health', methods=['GET', 'OPTIONS'])
 def health_check():
+    if request.method == 'OPTIONS':
+        return '', 204
+    
     return jsonify({
         'status': 'healthy',
         'timestamp': datetime.now().isoformat(),
